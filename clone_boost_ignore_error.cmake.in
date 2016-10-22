@@ -1,0 +1,7 @@
+execute_process(COMMAND
+    git clone --recursive --depth 1 --shallow-submodules -j 8 
+    https://github.com/boostorg/boost.git
+    RESULT_VARIABLE res_var ERROR_QUIET)
+if(NOT "${res_var}" STREQUAL "0")
+  message(STATUS "ignoring git clone problem failed res_var='${res_var}'")
+endif()

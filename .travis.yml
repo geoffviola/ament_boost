@@ -8,7 +8,7 @@ os:
 
 script:
     - docker pull osrf/ros2
-    - docker run -d -p 127.0.0.1:80:4567 osrf/ros2 /bin/bash
+    - docker run -it osrf/ros2 /bin/bash
     - cd
     - mkdir -p temp_ws/src
     - cd temp_ws/src
