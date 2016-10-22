@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+    - docker
+
+os:
+    - linux
+
+before_install:
+    - docker pull osrf/ros2
+    - docker run -d -p 127.0.0.1:80:4567 osrf/ros2 /bin/sh -c "cd /root/ros2;"
+    - docker ps -a
