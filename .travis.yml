@@ -7,7 +7,9 @@ os:
     - linux
 
 script:
-    - docker pull osrf/ros2
+    - pwd
+    - whoami
+    - docker --version
     - docker run -it osrf/ros2 /bin/bash
     - cd
     - mkdir -p temp_ws/src
