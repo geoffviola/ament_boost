@@ -16,5 +16,5 @@ install:
   - call C:\dev\ros2\install\setup.bash
 
 script:
-  dir
-  echo %cd%
+  - dir
+  - echo %cd%
