@@ -7,8 +7,5 @@ os:
     - linux
 
 script:
-    - docker run -it osrf/ros2 /bin/bash -c "cd;mkdir -p temp_ws/src;cd temp_ws/src;apt-get update;apt-get install -y software-properties-common;add-apt-repository -y ppa:git-core/ppa;apt-get update;apt-get install -y git;git clone https://github.com/geoffviola/ros2_boost;cd ..;ament build;tar -zcp -f install.tar install"
-    - docker version
-    - docker -a
-    - docker ps -l -q
-    - docker cp 'docker ps -l -q':root/temp_ws/install.tar .
+    - docker run -it osrf/ros2 /bin/bash -c "cd;mkdir -p temp_ws/src;cd temp_ws/src;apt-get update;apt-get install -y software-properties-common;add-apt-repository -y ppa:git-core/ppa;apt-get update;apt-get install -y git;git clone https://github.com/geoffviola/ros2_boost;cd ..;ament build --cmake-args -DCMAKE_INSTALL_QUIET;tar -zcp -f install.tar install"
+    - docker cp `docker ps -l -q`:root/temp_ws/install.tar .
