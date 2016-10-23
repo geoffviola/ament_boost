@@ -20,19 +20,22 @@ install:
   - ps: Invoke-WebRequest https://github.com/osrf/opensplice/releases/download/6.4.0-0/opensplice-Win64VS2013-with-VS2015-patch.zip -OutFile C:\dev\opensplice.zip
   - md C:\dev\opensplice
   - dir C:\dev\opensplice
-  - 7z x C:\dev\opensplice.zip -oC:\dev\opensplice
+  - 7z x -bso0 C:\dev\opensplice.zip -oC:\dev\opensplice
   - ps: Invoke-WebRequest https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip -OutFile C:\dev\ros2.zip
-  - 7z x C:\dev\ros2.zip -oC:\dev
+  - 7z x -bso0 C:\dev\ros2.zip -oC:\dev
   - ren C:\dev\ros2-windows ros2
   - cmd: set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
+  - cmake --version
   - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
   - call C:\dev\ros2\setup.bat
 
-build_script:
+before_build:
   - cd ..
   - md ros2-boost-ws
   - md ros2-boost-ws\src
   - mv ros2-boost ros2-boost-ws\src
   - cd ros2-boost-ws
+
+build_script:
   - C:\dev\ros2\bin\ament.exe build
