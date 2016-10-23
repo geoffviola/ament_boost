@@ -15,6 +15,6 @@ install:
   - ren C:\dev\ros2-windows C:\dev\ros2
   - call C:\dev\ros2\install\setup.bash
 
-script:
+build_script:
   - dir
   - echo %cd%
