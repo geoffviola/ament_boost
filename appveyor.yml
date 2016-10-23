@@ -1,0 +1,20 @@
+os: Visual Studio 2015
+
+environment:
+  matrix:
+  - GENERATOR: "Visual Studio 14 2015"
+    CONFIG: Release
+
+matrix:
+  fast_finish: true
+
+install:
+  - md C:\dev
+  - Start-FileDownload https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip -FileName C:\dev\ros2
+  - 7z x C:\dev\ros2 -o C:\dev
+  - ren C:\dev\ros2-windows C:\dev\ros2
+  - call C:\dev\ros2\install\setup.bash
+
+script:
+  dir
+  echo %cd%
