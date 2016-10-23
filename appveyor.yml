@@ -18,12 +18,12 @@ install:
   - md C:\dev
   - ps: Invoke-WebRequest https://github.com/osrf/opensplice/releases/download/6.4.0-0/opensplice-Win64VS2013-with-VS2015-patch.zip -OutFile C:\dev\opensplice.zip
   - 7z x -bso0 C:\dev\opensplice.zip -oC:\dev
-  - dir C:\dev\opensplice
   - ps: Invoke-WebRequest https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip -OutFile C:\dev\ros2.zip
   - 7z x -bso0 C:\dev\ros2.zip -oC:\dev
   - ren C:\dev\ros2-windows ros2
+  - dir C:\dev
+  - dir C:\dev\ros2
   - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
-  - python --version
   - cmd: set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
   - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
@@ -31,7 +31,7 @@ install:
   - ps: $verbos_setup_bat_content = $setup_bat_content -replace "@echo off", "echo starting setup script"
   - ps: $verbos_setup_bat_content | Out-File -FilePath C:\dev\ros2\setup.bat
   - ps: Get-Content C:\dev\ros2\setup.bat -Raw
-  - cmd: call C:\dev\ros2\setup.bat
+  - call C:\dev\ros2\setup.bat
 
 before_build:
   - cd ..
