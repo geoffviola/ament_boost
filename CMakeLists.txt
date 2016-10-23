@@ -3,41 +3,7 @@ project(ros2_boost)
 
 find_package(ament_cmake REQUIRED)
 
-# add_custom_target(setup_git_boost ALL
-  # ${CMAKE_COMMAND} -E make_directory boost)
-# add_custom_target(git_boost_init ALL 
-    # DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/boost/.git/config")
-# add_dependencies(git_boost_init setup_git_boost)
-# add_custom_command(
-    # OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/boost/.git/config"
-    # COMMAND git init
-    # WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost")
-# add_custom_target(git_boost_set_remote ALL 
-    # DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/BOOST_GIT_REMOTE_SET.txt")
-# add_dependencies(git_boost_set_remote git_boost_init)
-# add_custom_command(
-    # OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/BOOST_GIT_REMOTE_SET.txt"
-    # COMMAND git remote add --no-tags -t master origin 
-            # https://github.com/boostorg/boost.git
-    # COMMAND echo placeholder 
-            # >> "${CMAKE_CURRENT_BINARY_DIR}/BOOST_GIT_REMOTE_SET.txt"
-    # WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost")
-# add_custom_target(git_boost ALL
-  # COMMAND git fetch --depth=1
-  # COMMAND git checkout master
-  # COMMAND git submodule update --init --merge
-  # COMMAND git remote set-branches --add origin master
-  # COMMAND git pull --recurse-submodules
-  # COMMAND git submodule update --init
-  # COMMAND git checkout master
-  # COMMAND echo "git checkout master finished"
-  # COMMAND git submodule foreach "git reset --quiet --hard; git clean -fxd"
-  # COMMAND git reset --hard
-  # COMMAND git clean -fxd
-  # COMMENT "git boost"
-  # WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost"
-  # DEPENDS git_boost_set_remote)
-# add_dependencies(git_boost git_boost_set_remote)
+set_property(GLOBAL PROPERTY QUIET_INSTALL ON)
 
 configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/clone_boost_ignore_error.cmake.in
