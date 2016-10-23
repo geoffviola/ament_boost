@@ -8,4 +8,7 @@ os:
 
 script:
     - docker run -it osrf/ros2 /bin/bash -c "cd;mkdir -p temp_ws/src;cd temp_ws/src;apt-get update;apt-get install -y software-properties-common;add-apt-repository -y ppa:git-core/ppa;apt-get update;apt-get install -y git;git clone https://github.com/geoffviola/ros2_boost;cd ..;ament build;tar -zcp -f install.tar install"
-    - docker cp `docker ps -l -q`:root/temp_ws/install.tar .
+    - docker ps -l -q
+    - export LAST_DOCKER_ID="`docker ps -l -q`"
+    - echo $(LAST_DOCKER_ID)
+    - docker cp $(LAST_DOCKER_ID):root/temp_ws/install.tar .

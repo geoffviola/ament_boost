@@ -3,8 +3,6 @@ project(ros2_boost)
 
 find_package(ament_cmake REQUIRED)
 
-set_property(GLOBAL PROPERTY QUIET_INSTALL ON)
-
 configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/clone_boost_ignore_error.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/clone_boost_ignore_error.cmake
@@ -43,6 +41,9 @@ add_custom_target(copy_boost_includes ALL
     DEPENDS build_boost
     COMMENT "copy boost includes")
 
-install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost/include/" DESTINATION include)
+install(
+    DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost/include/" 
+    DESTINATION include
+    MESSAGE_NEVER)
 
 ament_package()
