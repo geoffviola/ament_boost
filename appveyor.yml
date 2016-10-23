@@ -34,7 +34,9 @@ install:
   - set "project_dir=%cd%"
   - cd C:\dev\ros2
   - dir
-  - call setup.bat
+  - echo "echo test .bat called" > test.bat
+  - call test.bat
+  - cmd: call "setup.bat"
   - cd %project_dir%
 
 before_build:
