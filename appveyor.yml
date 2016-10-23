@@ -15,9 +15,7 @@ matrix:
   fast_finish: true
 
 install:
-  - python --version
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - python --version
   - md C:\dev
   - ps: Invoke-WebRequest https://github.com/osrf/opensplice/releases/download/6.4.0-0/opensplice-Win64VS2013-with-VS2015-patch.zip -OutFile C:\dev\opensplice.zip
   - md C:\dev\opensplice
@@ -37,5 +35,4 @@ build_script:
   - md ros2-boost-ws\src
   - mv ros2-boost ros2-boost-ws\src
   - cd ros2-boost-ws
-  - python --version
-  - ament build
+  - C:\dev\ros2\bin\ament.exe build
