@@ -13,7 +13,7 @@ install:
   - ps: Invoke-WebRequest https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip -OutFile C:\dev\ros2.zip
   - 7z x C:\dev\ros2.zip -oC:\dev
   - ren C:\dev\ros2-windows ros2
-  - call C:\dev\ros2\setup.bash
+  - call C:\dev\ros2\setup.bat
 
 build_script:
   - dir
