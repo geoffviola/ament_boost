@@ -16,9 +16,12 @@ install:
   - call C:\dev\ros2\setup.bat
 
 build_script:
-  - dir
-  - dir C:\dev
-  - echo %cd%
+  - cd ..
+  - md ros2-boost-ws
+  - md ros2-boost-ws\src
+  - mv ros2-boost ros2-boost-ws\src
+  - cd ros2-boost-ws
   - cmd: set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
   - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
+  - ament build
