@@ -29,7 +29,7 @@ install:
   - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
   - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
   - ps: $verbos_setup_bat_content = $setup_bat_content -replace "@echo off", "echo starting setup script"
-  - ps: $verbos_setup_bat_content | Out-File -FilePath C:\dev\ros2\setup.bat
+  - ps: "echo start of file`r`n" + $verbos_setup_bat_content | Out-File -FilePath C:\dev\ros2\setup.bat
   - ps: Get-Content C:\dev\ros2\setup.bat -Raw
   - set "project_dir=%cd%"
   - cd C:\dev\ros2
