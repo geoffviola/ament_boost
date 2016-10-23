@@ -10,14 +10,14 @@ matrix:
 
 install:
   - md C:\dev
-  # - Start-FileDownload https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip -FileName C:\dev\ros2
-  - ps: Invoke-WebRequest "https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip" -OutFile "C:\dev\ros2"
-  - 7z x C:\dev\ros2 -o C:\dev
+  - ps: Invoke-WebRequest https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip -OutFile C:\dev\ros2
+  - 7z x C:\dev\ros2 -oC:\dev
   - ren C:\dev\ros2-windows C:\dev\ros2
   - call C:\dev\ros2\install\setup.bash
 
 build_script:
   - dir
+  - dir C:\dev
   - echo %cd%
   - cmd: set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
   - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
