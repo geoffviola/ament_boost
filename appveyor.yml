@@ -1,11 +1,18 @@
 os: Visual Studio 2015
 
 environment:
-  - GENERATOR: "Visual Studio 14 2015"
-    CONFIG: Release
-    PYTHON: "C:\\Python35-x64"
-    PYTHON_VERSION: "3.5.0"
-    PYTHON_ARCH: "64"
+  matrix:
+    - GENERATOR: "Visual Studio 14 2015"
+      CONFIG: Release
+      PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.0"
+      PYTHON_ARCH: "64"matrix:
+
+platform:
+  - x64
+
+matrix:
+  fast_finish: true
 
 install:
   - md C:\dev
