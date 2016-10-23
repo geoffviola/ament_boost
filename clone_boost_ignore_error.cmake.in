@@ -3,5 +3,5 @@ execute_process(COMMAND
     https://github.com/boostorg/boost.git
     RESULT_VARIABLE res_var ERROR_QUIET)
 if(NOT "${res_var}" STREQUAL "0")
-  message(STATUS "ignoring git clone problem failed res_var='${res_var}'")
+  message(STATUS "ignoring git clone problem with error code '${res_var}'")
 endif()
