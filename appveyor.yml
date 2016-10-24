@@ -31,7 +31,7 @@ install:
   - ps: $verbose_setup_bat_content = $setup_bat_content -replace "@echo off", "echo starting setup script"
   - ps: '$verbose_setup_bat_content = $verbose_setup_bat_content -replace ":: generated from ament_package/template/prefix_level/setup.bat.in", "echo starting setup script"'
   # - ps: '$verbose_setup_bat_content = $verbose_setup_bat_content -replace "::", "REM"'
-  - ps: $verbose_setup_bat_content | Out-File -Encoding ANSI -FilePath C:\dev\ros2\setup.bat
+  - ps: $verbose_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
   # - ps: Get-Content C:\dev\ros2\setup.bat -Raw
   - chcp
   - PATH
