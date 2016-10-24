@@ -30,8 +30,9 @@ install:
   - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
   - ps: $verbose_setup_bat_content = $setup_bat_content -replace "@echo off", "echo starting setup script"
   # - ps: '$verbose_setup_bat_content = $verbose_setup_bat_content -replace ":: generated from ament_package/template/prefix_level/setup.bat.in", "echo starting setup script"'
+  - ps: '$verbose_setup_bat_content = $verbose_setup_bat_content -replace ":: generated from ament_package/template/prefix_level/setup.bat.in", "echo starting setup script"'
   - ps: $verbose_setup_bat_content | Out-File -FilePath C:\dev\ros2\setup.bat
-  - ps: Get-Content C:\dev\ros2\setup.bat -Raw
+  # - ps: Get-Content C:\dev\ros2\setup.bat -Raw
   - chcp
   - type C:\dev\ros2\setup.bat
   - call C:\dev\ros2\setup.bat
