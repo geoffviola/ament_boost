@@ -33,7 +33,7 @@ install:
   - ps: $verbose_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
   - ps: $local_setup_bat_content = Get-Content C:\dev\ros2\local_setup.bat -Raw
   # - ps: $local_setup_bat_content = $setup_bat_content -replace "@echo off", "@echo on"
-  - ps: '$local_setup_bat_content = $local_setup_bat_content -replace "local_setup.bat\`"", "local_setup.bat\`" && echo %~dp0share\%%~p\local_setup.bat"
+  - ps: $local_setup_bat_content = $local_setup_bat_content -replace "local_setup.bat\`"", "local_setup.bat\`" && echo %~dp0share\%%~p\local_setup.bat"
   - ps: $local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\local_setup.bat
   - call C:\dev\ros2\setup.bat
 
