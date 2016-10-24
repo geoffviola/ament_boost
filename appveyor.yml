@@ -21,20 +21,19 @@ install:
   - ps: Invoke-WebRequest https://github.com/ros2/ros2/releases/download/release-alpha8/ros2-alpha8-package-windows-opensplice.zip -OutFile C:\dev\ros2.zip
   - 7z x -bso0 C:\dev\ros2.zip -oC:\dev
   - ren C:\dev\ros2-windows ros2
-  - dir C:\dev
-  - dir C:\dev\ros2
-  - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
-  - cmd: set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
-  - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-  - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
-  - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
-  - ps: '$verbose_setup_bat_content = $verbose_setup_bat_content -replace ":: generated from ament_package/template/prefix_level/setup.bat.in", "echo starting setup script"'
+  - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
+  - set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
+  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
+  # - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
+  # - ps: '$verbose_setup_bat_content = $verbose_setup_bat_content -replace ":: generated from ament_package/template/prefix_level/setup.bat.in", "echo starting setup script"'
   # - ps: '$verbose_setup_bat_content = $verbose_setup_bat_content -replace "::", "REM"'
-  - ps: $verbose_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
+  # - ps: $verbose_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
   # - ps: $local_setup_bat_content = Get-Content C:\dev\ros2\local_setup.bat -Raw
   # - ps: $local_setup_bat_content = $setup_bat_content -replace "@echo off", "@echo on"
   # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "local_setup.bat\`"", "local_setup.bat\`" && echo %~dp0share\%%~p\local_setup.bat"
   # - ps: $local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\local_setup.bat
+  - python --version
   - call C:\dev\ros2\setup.bat
   - which ament
 
