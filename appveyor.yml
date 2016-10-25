@@ -4,9 +4,9 @@ environment:
   matrix:
     - GENERATOR: "Visual Studio 14 2015"
       CONFIG: Release
-      # PYTHON: "C:\\Python35-x64"
-      # PYTHON_VERSION: "3.5.0"
-      # PYTHON_ARCH: "64"
+      PYTHON: "C:\\Python27.10-x64"
+      PYTHON_VERSION: "2.7.10"
+      PYTHON_ARCH: "64"
 
 platform:
   - x64
@@ -22,6 +22,7 @@ install:
   - 7z x -bso0 C:\dev\ros2.zip -oC:\dev
   - ren C:\dev\ros2-windows ros2
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
+  - python --version
   - set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
