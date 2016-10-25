@@ -25,18 +25,19 @@ install:
   - set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
-  - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
-  - ps: $setup_bat_content = $setup_bat_content -replace "@echo off", "@echo on"
+  # - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
+  # - ps: $setup_bat_content = $setup_bat_content -replace "@echo off", "@echo on"
   # - ps: '$setup_bat_content = $setup_bat_content -replace ":: generated from ament_package/template/prefix_level/setup.bat.in", "echo starting setup script"'
   # - ps: '$setup_bat_content = $setup_bat_content -replace "::", "REM"'
-  - ps: $setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
+  # - ps: $setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
   - ps: $local_setup_bat_content = Get-Content C:\dev\ros2\local_setup.bat -Raw
   - ps: $local_setup_bat_content = $local_setup_bat_content -replace "@echo off", "@echo on"
+  - ps: $local_setup_bat_content = $local_setup_bat_content -replace "    set "ordered_packages=!ordered_packages!", "    echo %%p && set "ordered_packages=!ordered_packages!"
   # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "local_setup.bat\`"", "local_setup.bat\`" && echo %~dp0share\%%~p\local_setup.bat"
   - ps: $local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\local_setup.bat
-  - ps: $acf_local_setup_bat_content = Get-Content C:\dev\ros2\share\ament_clang_format\local_setup.bat -Raw
-  - ps: $acf_local_setup_bat_content = $acf_local_setup_bat_content -replace "@echo off", "@echo on"
-  - ps: $acf_local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\share\ament_clang_format\local_setup.bat
+  # - ps: $acf_local_setup_bat_content = Get-Content C:\dev\ros2\share\ament_clang_format\local_setup.bat -Raw
+  # - ps: $acf_local_setup_bat_content = $acf_local_setup_bat_content -replace "@echo off", "@echo on"
+  # - ps: $acf_local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\share\ament_clang_format\local_setup.bat
   - python --version
   - call C:\dev\ros2\setup.bat
   - which ament
