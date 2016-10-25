@@ -49,6 +49,7 @@ install:
   - copy C:\\Python35 C:\ProgramData\chocolatey\lib\python3\tools
   - dir C:\ProgramData\chocolatey\lib\python3\tools
   - call C:\dev\ros2\setup.bat
+  - git --version
   - which ament
 
 before_build:
