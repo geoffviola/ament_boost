@@ -32,7 +32,7 @@ install:
   # - ps: $setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
   - ps: $local_setup_bat_content = Get-Content C:\dev\ros2\local_setup.bat -Raw
   - ps: $local_setup_bat_content = $local_setup_bat_content -replace "@echo off", "@echo on"
-  - ps: $local_setup_bat_content = $local_setup_bat_content -replace "    set "ordered_packages=!ordered_packages!", "    echo %%p && set "ordered_packages=!ordered_packages!"
+  - ps: $local_setup_bat_content = $local_setup_bat_content -replace "    set "ordered_packages=!ordered_packages!", "    echo %%p & set "ordered_packages=!ordered_packages!"
   # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "local_setup.bat\`"", "local_setup.bat\`" && echo %~dp0share\%%~p\local_setup.bat"
   - ps: $local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\local_setup.bat
   # - ps: $acf_local_setup_bat_content = Get-Content C:\dev\ros2\share\ament_clang_format\local_setup.bat -Raw
