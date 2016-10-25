@@ -41,7 +41,7 @@ install:
   - ps: $_order_packages_py_content = Get-Content C:\dev\ros2\_order_packages.py -Raw
   - ps: $_order_packages_py_content = $_order_packages_py_content -replace "main()", 'print("here");main()'
   - ps: $_order_packages_py_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\_order_packages.py
-  - choco install -y python & echo 1
+  - choco install -y python && exit 0
   - type C:\ProgramData\chocolatey\lib\python3\tools\chocolateyInstall.ps1
   - type C:\ProgramData\chocolatey\logs\chocolatey.log
   - call C:\dev\ros2\setup.bat
