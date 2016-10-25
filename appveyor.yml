@@ -4,7 +4,7 @@ environment:
   matrix:
     - GENERATOR: "Visual Studio 14 2015"
       CONFIG: Release
-      PYTHON: "C:\\ProgramData\\chocolatey\\bin\\Python3.5.1-x64"
+      PYTHON: "C:\\ProgramData\\chocolatey\\bin\\Python351-x64"
       PYTHON_VERSION: "3.5.1"
       PYTHON_ARCH: "64"
 
