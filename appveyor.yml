@@ -45,7 +45,7 @@ install:
   # - choco install -y python || type C:\ProgramData\chocolatey\logs\chocolatey.log && type C:\ProgramData\chocolatey\lib\python3\tools\chocolateyInstall.ps1
   - md C:\ProgramData\chocolatey\lib\python3\tools
   - ps: $TargetFile = "C:\\Python351-x64.exe"
-  - ps: $ShortcutFile = "C:\ProgramData\chocolatey\lib\python3\tools\python.lnk"
+  - ps: $ShortcutFile = "C:\ProgramData\chocolatey\lib\python3\tools\python.exe"
   - ps: $WScriptShell = New-Object -ComObject WScript.Shell
   - ps: $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
   - ps: $Shortcut.TargetPath = $TargetFile
