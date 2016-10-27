@@ -46,6 +46,7 @@ install:
   # - choco install -y python || type C:\ProgramData\chocolatey\logs\chocolatey.log && type C:\ProgramData\chocolatey\lib\python3\tools\chocolateyInstall.ps1
   - call C:\dev\ros2\setup.bat
   - which ament
+  - git clone --recursive --depth 1 --shallow-submodules -j 8 https://github.com/boostorg/boost.git
 
 before_build:
   - cd ..
