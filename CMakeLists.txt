@@ -3,21 +3,17 @@ project(ros2_boost)
 
 find_package(ament_cmake REQUIRED)
 
-configure_file(
-  ${CMAKE_CURRENT_SOURCE_DIR}/clone_boost_ignore_error.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/clone_boost_ignore_error.cmake
-  COPYONLY
-)
-add_custom_target(git_boost_clone ALL
-    ${CMAKE_COMMAND} -P 
-    "${CMAKE_CURRENT_BINARY_DIR}/clone_boost_ignore_error.cmake")
+add_custom_target(git_boost_subsubmodule_dl ALL
+    git submodule update --init --recursive --depth 1 -j 8
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 add_custom_target(git_boost_checkout ALL
     git submodule foreach --recursive git checkout
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost")
-add_dependencies(git_boost_checkout git_boost_clone)
+add_dependencies(git_boost_checkout git_boost_subsubmodule_dl)
 
 add_custom_target(bootstrap_boost ALL
     DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/boost/b2${CMAKE_EXECUTABLE_SUFFIX}")
+add_dependencies(bootstrap_boost git_boost_checkout)
 if (WIN32)
   set(SHELL_SUFFIX ".bat")
 else ()
@@ -28,7 +24,6 @@ add_custom_command(
     COMMAND "${CMAKE_CURRENT_BINARY_DIR}/boost/bootstrap${SHELL_SUFFIX}"
     COMMENT "git bootstrap"
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost")
-add_dependencies(bootstrap_boost git_boost_checkout)
 
 add_custom_target(build_boost ALL
     "${CMAKE_CURRENT_BINARY_DIR}/boost/b2${CMAKE_EXECUTABLE_SUFFIX}" headers
