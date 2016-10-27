@@ -4,7 +4,7 @@ project(ros2_boost)
 find_package(ament_cmake REQUIRED)
 
 add_custom_target(git_boost_subsubmodule_dl ALL
-    git submodule update --init --recursive --depth 1 -j 8
+    git submodule update --init --recursive
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 add_custom_target(git_boost_checkout ALL
     git submodule foreach --recursive git checkout
