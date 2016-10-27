@@ -1,5 +1,4 @@
 os: Visual Studio 2015
-image: Visual Studio 2015
 
 environment:
   matrix:
@@ -25,9 +24,11 @@ install:
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
   # - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
-  - dir C:\Program Files
+  - dir "C:\Program Files"
   - dir "C:\Program Files (x86)"
-  - C:\Program Files (x86)\MSBuild\14.0\Bin
+  - dir "C:\Program Files (x86)\MSBUILD"
+  - dir "C:\Program Files (x86)\MSBUILD\14.0"
+  - dir "C:\Program Files (x86)\MSBuild\14.0\Bin"
   - which echo
   - which msbuild
   # - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
