@@ -55,12 +55,12 @@ before_build:
   - cd ros2-boost-ws
 
 build_script:
-  - cd ros2-boost
+  - cd src/ros2-boost
   - md build
   - cd build
   - cmake ..
   - cmake --build . --config %CONFIG%
-  - cd ../..
+  - cd ../../..
   - echo test done
   - which ament
   - ament build
