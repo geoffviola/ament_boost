@@ -3,12 +3,18 @@ project(ros2_boost)
 
 find_package(ament_cmake REQUIRED)
 
+configure_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/git_submodule_update_no_ignore_error.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/git_submodule_update_no_ignore_error.cmake
+  COPYONLY
+)
+
 add_custom_target(git_boost_subsubmodule_dl ALL
-    git submodule update --init --recursive
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+    ${CMAKE_COMMAND} -P
+    "${CMAKE_CURRENT_BINARY_DIR}/git_submodule_update_no_ignore_error.cmake")
 add_custom_target(git_boost_checkout ALL
     git submodule foreach --recursive git checkout
-    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/boost")
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 add_dependencies(git_boost_checkout git_boost_subsubmodule_dl)
 
 add_custom_target(bootstrap_boost ALL
