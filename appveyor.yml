@@ -1,8 +1,9 @@
 os: Visual Studio 2015
+image: Visual Studio 2015
 
 environment:
   matrix:
-    - GENERATOR: "Visual Studio 14 2015"
+    - GENERATOR: "Visual Studio 14 2015 Win64"
       CONFIG: Release
       PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5.0"
@@ -22,7 +23,7 @@ install:
   - 7z x -bso0 C:\dev\ros2.zip -oC:\dev
   - ren C:\dev\ros2-windows ros2
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  # - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
   - which echo
   - which msbuild
