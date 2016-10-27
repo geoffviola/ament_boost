@@ -22,7 +22,7 @@ install:
   - 7z x -bso0 C:\dev\ros2.zip -oC:\dev
   - ren C:\dev\ros2-windows ros2
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
-  # - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
   - which echo
   - which msbuild
@@ -55,6 +55,12 @@ before_build:
   - cd ros2-boost-ws
 
 build_script:
+  - md build
+  - cd build
+  - cmake ..
+  - cmake --build . --config %CONFIG%
+  - cd ..
+  - echo test done
   - which ament
   - ament build
   - C:\dev\ros2\bin\ament.exe build
