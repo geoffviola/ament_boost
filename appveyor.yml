@@ -23,8 +23,10 @@ install:
   - ren C:\dev\ros2-windows ros2
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
   - python --version
+  - cmake --version
   - set PATH=C:\Program Files (x86)\CMake\bin;%PATH%
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  - cmake --version
+  # - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
   # - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
   # - ps: $setup_bat_content = $setup_bat_content -replace "@echo off", "@echo on"
