@@ -24,28 +24,10 @@ install:
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
-  # - which echo
-  # - which msbuild
-  # - ps: $setup_bat_content = Get-Content C:\dev\ros2\setup.bat -Raw
-  # - ps: $setup_bat_content = $setup_bat_content -replace "@echo off", "@echo on"
-  # - ps: '$setup_bat_content = $setup_bat_content -replace ":: generated from ament_package/template/prefix_level/setup.bat.in", "echo starting setup script"'
-  # - ps: '$setup_bat_content = $setup_bat_content -replace "::", "REM"'
-  # - ps: $setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\setup.bat
   - ps: $local_setup_bat_content = Get-Content C:\dev\ros2\local_setup.bat -Raw
-  # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "@echo off", "@echo on"
   - ps: $local_setup_bat_content = $local_setup_bat_content -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe", "python"
-  # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "    set "ordered_packages=!ordered_packages!", '    echo %%p "&""&" set "ordered_packages=!ordered_packages!'
-  # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "local_setup.bat\`"", "local_setup.bat\`" && echo %~dp0share\%%~p\local_setup.bat"
   - ps: $local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\local_setup.bat
-  # - ps: $acf_local_setup_bat_content = Get-Content C:\dev\ros2\share\ament_clang_format\local_setup.bat -Raw
-  # - ps: $acf_local_setup_bat_content = $acf_local_setup_bat_content -replace "@echo off", "@echo on"
-  # - ps: $acf_local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\share\ament_clang_format\local_setup.bat
-  # - ps: $_order_packages_py_content = Get-Content C:\dev\ros2\_order_packages.py -Raw
-  # - ps: $_order_packages_py_content = $_order_packages_py_content -replace "main()", 'print("here");main()'
-  # - ps: $_order_packages_py_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\_order_packages.py
-  # - choco install -y python || type C:\ProgramData\chocolatey\logs\chocolatey.log && type C:\ProgramData\chocolatey\lib\python3\tools\chocolateyInstall.ps1
   - call C:\dev\ros2\setup.bat
-  - which ament
 
 before_build:
   - cd ..
@@ -61,7 +43,4 @@ build_script:
   - cmake .. -G"%GENERATOR%"
   - cmake --build . --config %CONFIG%
   - cd ../../..
-  - echo test done
-  - which ament
-  - ament build
-  - C:\dev\ros2\bin\ament.exe build
+  # - ament build

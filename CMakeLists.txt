@@ -28,22 +28,23 @@ endif ()
 add_custom_command(
     OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}"
     COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/src/boost/bootstrap${SHELL_SUFFIX}"
-    COMMENT "git bootstrap"
+    COMMENT "boost bootstrap"
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/boost")
 
 add_custom_target(build_boost ALL
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}" headers
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}"
+      address-model=64 headers
     DEPENDS bootstrap_boost
-    COMMENT "build boost"
+    COMMENT "building boost"
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/boost")
 add_custom_target(copy_boost_includes ALL
-    ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_BINARY_DIR}/src/boost/boost" 
-        "${CMAKE_CURRENT_SOURCE_DIR}/src/boost/include/boost"
+    "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_SOURCE_DIR}/src/boost/boost"
+        "${CMAKE_BINARY_DIR}/b2/include/boost"
     DEPENDS build_boost
     COMMENT "copy boost includes")
 
 install(
-    DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/boost/include/" 
+    DIRECTORY "${CMAKE_BINARY_DIR}/b2/include/"
     DESTINATION include
     MESSAGE_NEVER)
 
