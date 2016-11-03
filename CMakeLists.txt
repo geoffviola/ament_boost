@@ -9,9 +9,13 @@ configure_file(
   COPYONLY
 )
 
+add_custom_target(git_boost_submodule_update ALL
+    git submodule update
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 add_custom_target(git_boost_subsubmodule_dl ALL
     ${CMAKE_COMMAND} -P
     "${CMAKE_CURRENT_BINARY_DIR}/git_submodule_update_no_ignore_error.cmake")
+add_dependencies(git_boost_subsubmodule_dl git_boost_submodule_update)
 add_custom_target(git_boost_checkout ALL
     git submodule foreach --recursive git checkout
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
