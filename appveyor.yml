@@ -31,13 +31,13 @@ install:
 
 before_build:
   - cd ..
-  - md ros2-boost-ws
-  - md ros2-boost-ws\src
-  - mv ros2-boost ros2-boost-ws\src
-  - cd ros2-boost-ws
+  - md ament_boost_ws
+  - md ament_boost_ws\src
+  - mv ament-boost ament_boost_ws\src\ament_boost
+  - cd ament_boost_ws
 
 build_script:
-  - cd src/ros2-boost
+  - cd src/ament_boost
   - md build
   - cd build
   - cmake .. -G"%GENERATOR%"
