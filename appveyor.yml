@@ -38,10 +38,11 @@ before_build:
   - cd ament_boost_ws
 
 build_script:
-  - cd src/ament_boost
+  # - cd src/ament_boost
   - md build
   - cd build
-  - cmake .. -G"%GENERATOR%"
+  - cmake ../src/ament_boost -G"%GENERATOR%"
   - cmake --build . --config %CONFIG%
-  - cd ../../..
+  - msbuild INSTALL.vcxproj
+  # - cd ..
   # - ament build
