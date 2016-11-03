@@ -33,7 +33,8 @@ before_build:
   - cd ..
   - md ament_boost_ws
   - md ament_boost_ws\src
-  - mv ament-boost ament_boost_ws\src\ament_boost
+  - ren ament-boost ament_boost 
+  - mv ament_boost ament_boost_ws\src
   - cd ament_boost_ws
 
 build_script:
