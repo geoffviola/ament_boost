@@ -46,10 +46,8 @@ build_script:
   - cmake --build . --config %CONFIG%
   - msbuild INSTALL.vcxproj
   - cd ..
-  - pwd
 
 before_deploy:
-  - dir
   - xcopy /e /c /i /y install ament_boost_x64_windows
   - 7z a -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
 

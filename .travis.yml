@@ -9,7 +9,6 @@ script:
   update;apt-get install -y git subversion;git clone https://github.com/geoffviola/ament_boost;cd
   ..;ament build;cp -r install ament_boost_x64_ubuntu; tar -zcp -f ament_boost_x64_ubuntu.tar ament_boost_x64_ubuntu"
 - docker cp $(docker ps -l -q):root/temp_ws/ament_boost_x64_ubuntu.tar .
-- ls
 before_deploy: git fetch --tags
 deploy:
   provider: releases
