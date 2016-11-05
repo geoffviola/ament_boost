@@ -8,7 +8,8 @@ find_package(Subversion REQUIRED)
 add_custom_target(svn_boost ALL
     "${Subversion_SVN_EXECUTABLE}" 
     checkout http://svn.boost.org/svn/boost/trunk/ 
-    "${CMAKE_BINARY_DIR}/src/boost")
+    "${CMAKE_BINARY_DIR}/src/boost"
+    -q)
 
 add_custom_target(bootstrap_boost ALL
     DEPENDS "${CMAKE_BINARY_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}")
