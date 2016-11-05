@@ -45,7 +45,7 @@ build_script:
   - cmake ../src/ament_boost -G"%GENERATOR%"
   - cmake --build . --config %CONFIG%
   - msbuild INSTALL.vcxproj
-  - cd ..
+  - cd ../..
 
 after_build:
   - xcopy /e /c /i /y install ament_boost_x64_windows
