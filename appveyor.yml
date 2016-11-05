@@ -7,6 +7,8 @@ environment:
       PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5.0"
       PYTHON_ARCH: "64"
+  github_o_auth:
+    secure: aUDHgyx/y2Z+bVu0zVHJq8T9fQVCulPJ4N23BSUjhaMpRCqwrE6P0ACBN/l0+jCP
 
 platform:
   - x64
@@ -38,11 +40,25 @@ before_build:
   - cd ament_boost_ws
 
 build_script:
-  # - cd src/ament_boost
   - md build
   - cd build
   - cmake ../src/ament_boost -G"%GENERATOR%"
   - cmake --build . --config %CONFIG%
   - msbuild INSTALL.vcxproj
-  # - cd ..
-  # - ament build
+
+before_deploy:
+  - xcopy /e /c /i /y install ament_boost_x64_windows
+  - 7z a -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
+
+deploy:
+  release: ament_boost_x64_windows
+  description: 'ament_boost'
+  provider: GitHub
+  auth_token:
+    secure: $(github_o_auth)
+  artifact: ament_boost_x64_windows.zip
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    appveyor_repo_tag: true

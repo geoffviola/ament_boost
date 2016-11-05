@@ -7,14 +7,14 @@ script:
 - docker run -it osrf/ros2 /bin/bash -c "cd;mkdir -p temp_ws/src;cd temp_ws/src;apt-get
   update;apt-get install -y software-properties-common;add-apt-repository -y ppa:git-core/ppa;apt-get
   update;apt-get install -y git subversion;git clone https://github.com/geoffviola/ament_boost;cd
-  ..;ament build;tar -zcp -f install.tar install"
-- docker cp $(docker ps -l -q):root/temp_ws/install.tar ament_boost_x64_Ubuntu.tar
+  ..;ament build;cp -r install ament_boost_x64_ubuntu; tar -zcp -f ament_boost_x64_ubuntu.tar ament_boost_x64_ubuntu"
+- docker cp $(docker ps -l -q):root/temp_ws/ament_boost_x64_ubuntu.tar ament_boost_x64_ubuntu.tar
 before_deploy: git fetch --tags
 deploy:
   provider: releases
   api_key:
     secure: au1cumB3aYqYtejDK9ANvkk0JK4+uj/QtmrAzvMycgqaVNvQUzPJrP0FXQgigL/ka8WPkZMDc5esVWsgvMTTlPt3iQDaOf7RxdZK9VE/YEhge5Jx7EYmqq4EnLE2tKVSiwHxz2HcQHDpGBMQ2i4aDaYv3sBzVr0DuuZhxcXZ4vVSN53/6fG09tKTVNjU/y7bU9BCWQZeFqPfAlXen2k/4jCSClbW3qhWaYtV38YaCHlpzv/nDTJ5EQksGJ0sjfQhNpDd8pHMMzs2jj4YrIaeL7lwSaXuwI4LzlvaW+E0LzYT0D1dA5ApV8+4b+p57kk4o+OQsPpaTdFinwaaQVjLesjm4Sa6JSJ1vKsLBLSBj4/+6BtCmnGh9jkzeWnRd5Pss43NAEWuP/Hjf6BayIY3M3glE3NHQ00if7rWKfktEj3aauhc5IpJATo+Rfy+G4rWKj/hJN6gxaqn5W25Lz6AbzowO8vpz8Y4uqT9sRg8ETcU8CVkvkmapu7d4xfz1CZsO3DaBbcdlM9/a3GalivNxnwxonqafSX+NllUY7/2gSibJWmOzdl36BxymiivEIBMwr5qVegBntEwbmx70+9aVDUN6z8RPrUpp4pB+cnOaeLRT5Um3L74ip5XM39OPEKGwhH5cnyKe2EAkCIhD91oPPY4PhKq7zSTcpTSKKbGQ0Y=
-  file: ament_boost_x64_Ubuntu.tar
+  file: ament_boost_x64_ubuntu.tar
   skip_cleanup: true
   on:
     tags: true
