@@ -51,6 +51,10 @@ before_deploy:
   - xcopy /e /c /i /y install ament_boost_x64_windows
   - 7z a -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
 
+artifacts:
+  - path: ament_boost_x64_windows.zip
+    name: ament_boost_x64_windows
+
 deploy:
   release: ament_boost_x64_windows
   description: 'ament_boost'
