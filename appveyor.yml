@@ -32,7 +32,7 @@ install:
 before_build:
   - md src
   - md src\ament_boost
-  - for /f "delims=" %a IN ('dir "." /b') do if NOT "src" == "%a" move "%a" src\ament_boost\
+  - for /f "delims=" %%a IN ('dir "." /b') do if NOT "src" == "%%a" move "%%a" src\ament_boost\
 
 build_script:
   - md build
