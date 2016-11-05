@@ -47,7 +47,7 @@ build_script:
   - msbuild INSTALL.vcxproj
   - cd ..
 
-before_deploy:
+after_build:
   - xcopy /e /c /i /y install ament_boost_x64_windows
   - 7z a -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
 
