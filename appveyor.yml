@@ -58,6 +58,7 @@ deploy:
   artifact: ament_boost_x64_windows.zip
   draft: false
   prerelease: false
+  force_update: true
   on:
     branch: master
     appveyor_repo_tag: true
