@@ -1,23 +1,20 @@
 sudo: required
-
 services:
-    - docker
-
+- docker
 os:
-    - linux
-
+- linux
 script:
-    - docker run -it osrf/ros2 /bin/bash -c "cd;mkdir -p temp_ws/src;cd temp_ws/src;apt-get update;apt-get install -y software-properties-common;add-apt-repository -y ppa:git-core/ppa;apt-get update;apt-get install -y git subversion;git clone https://github.com/geoffviola/ament_boost;cd ..;ament build;tar -zcp -f install.tar install"
-    - docker cp $(docker ps -l -q):root/temp_ws/install.tar ament_boost_x64_Ubuntu.tar
-
+- docker run -it osrf/ros2 /bin/bash -c "cd;mkdir -p temp_ws/src;cd temp_ws/src;apt-get
+  update;apt-get install -y software-properties-common;add-apt-repository -y ppa:git-core/ppa;apt-get
+  update;apt-get install -y git subversion;git clone https://github.com/geoffviola/ament_boost;cd
+  ..;ament build;tar -zcp -f install.tar install"
+- docker cp $(docker ps -l -q):root/temp_ws/install.tar ament_boost_x64_Ubuntu.tar
 before_deploy: git fetch --tags
-
 deploy:
-    provider: releases
-    api_key:
-        secure: P7AYlPdMGrigGUrrfiqIPNSs8BtV/jJh7UWkUrqf1+v8UnoqQKkS6p2hBjMk7FTaQ2qBpHh9mqrmEO3Sj2T6A0JHt80S2JtAmN03Q4H8PNKPkDDj3vqh57MrEPDYnQ4iFYzcMQRDBZjLVSGuaySe0IteJrDlxohYuRAHMq135rftFIDN5z41O7ZsO6t1qLYamsDw/qg3iavn5+GiN1odzQGmG2STDyKu/h2v9UfYtMXWuyB7Y85cK7NpEkgRQ1Fe+NerOYYJ8wTe2133z9XVq1vQSUHu+WOuCkIVUQJdWndNY/Vn786qE5VZJVKX+ilG9OoPDIOqRYbZWpzuenCiVEVta8IueLFrWmSjR4SaxDOrT2ThAv/GNewknDPHzV7x1V8RKyKlljzGbdU4DL3aL6l5URI9hSwUwGitxS61tEbJLRid3dHxWp8tC+f8bYZWY1B22lZsusPELTpUy+9uBs5RbCmZnHqkRR6rwgXniAZFuaBwU80cX1sE7d9qKGiviC+3Ad4GnpKN49xNghIttTED+nrhbIN1ndQXT/O14Se+VnLBz4L1s3rGUJoaPUG0Wu2D0SzpklXDeVhVYIF05F21biN7MKPphotMcusBzoMEdtToD9VCiNFSOQKUlBCkNp5FYIChxyLeEWxIPf/WPccqVwYtRfzffMJWtb77ZFE=
-    file: ament_boost_x64_Ubuntu.tar
-    skip_cleanup: true
-    on:
-        tags: true
+  provider: releases
+  api_key:
+    secure: au1cumB3aYqYtejDK9ANvkk0JK4+uj/QtmrAzvMycgqaVNvQUzPJrP0FXQgigL/ka8WPkZMDc5esVWsgvMTTlPt3iQDaOf7RxdZK9VE/YEhge5Jx7EYmqq4EnLE2tKVSiwHxz2HcQHDpGBMQ2i4aDaYv3sBzVr0DuuZhxcXZ4vVSN53/6fG09tKTVNjU/y7bU9BCWQZeFqPfAlXen2k/4jCSClbW3qhWaYtV38YaCHlpzv/nDTJ5EQksGJ0sjfQhNpDd8pHMMzs2jj4YrIaeL7lwSaXuwI4LzlvaW+E0LzYT0D1dA5ApV8+4b+p57kk4o+OQsPpaTdFinwaaQVjLesjm4Sa6JSJ1vKsLBLSBj4/+6BtCmnGh9jkzeWnRd5Pss43NAEWuP/Hjf6BayIY3M3glE3NHQ00if7rWKfktEj3aauhc5IpJATo+Rfy+G4rWKj/hJN6gxaqn5W25Lz6AbzowO8vpz8Y4uqT9sRg8ETcU8CVkvkmapu7d4xfz1CZsO3DaBbcdlM9/a3GalivNxnwxonqafSX+NllUY7/2gSibJWmOzdl36BxymiivEIBMwr5qVegBntEwbmx70+9aVDUN6z8RPrUpp4pB+cnOaeLRT5Um3L74ip5XM39OPEKGwhH5cnyKe2EAkCIhD91oPPY4PhKq7zSTcpTSKKbGQ0Y=
+  file: ament_boost_x64_Ubuntu.tar
+  on:
+    repo: geoffviola/ament_boost
 repo: geoffviola/ament_boost
