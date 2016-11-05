@@ -7,8 +7,6 @@ environment:
       PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5.0"
       PYTHON_ARCH: "64"
-  github_o_auth:
-    secure: aUDHgyx/y2Z+bVu0zVHJq8T9fQVCulPJ4N23BSUjhaMpRCqwrE6P0ACBN/l0+jCP
 
 platform:
   - x64
@@ -59,7 +57,7 @@ deploy:
   description: 'ament_boost'
   provider: GitHub
   auth_token:
-    secure: $(github_o_auth)
+    secure: aUDHgyx/y2Z+bVu0zVHJq8T9fQVCulPJ4N23BSUjhaMpRCqwrE6P0ACBN/l0+jCP
   artifact: ament_boost_x64_windows.zip
   draft: false
   prerelease: false
