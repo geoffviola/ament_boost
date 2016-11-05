@@ -50,7 +50,7 @@ after_build:
   - echo %APPVEYOR_BUILD_FOLDER%
 
 artifacts:
-  - path: %APPVEYOR_BUILD_FOLDER%/build/ament_boost_x64_windows.zip
+  - path: $(APPVEYOR_BUILD_FOLDER)/build/ament_boost_x64_windows.zip
     name: ament_boost_x64_windows
 
 deploy:
