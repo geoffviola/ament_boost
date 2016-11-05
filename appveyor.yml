@@ -42,10 +42,9 @@ before_build:
 build_script:
   - md build
   - cd build
-  - cmake ../src/ament_boost -G"%GENERATOR%"
+  - cmake ../src/ament_boost -G"%GENERATOR%" -DCMAKE_INSTALL_PREFIX=install
   - cmake --build . --config %CONFIG%
   - msbuild INSTALL.vcxproj
-  - cd ../..
 
 after_build:
   - xcopy /e /c /i /y install ament_boost_x64_windows
