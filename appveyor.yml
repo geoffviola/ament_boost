@@ -30,12 +30,9 @@ install:
   - call C:\dev\ros2\setup.bat
 
 before_build:
-  - cd ..
-  - md ament_boost_ws
-  - md ament_boost_ws\src
-  - ren ament-boost ament_boost 
-  - mv ament_boost ament_boost_ws\src
-  - cd ament_boost_ws
+  - md src
+  - md src\ament_boost
+  - for /f "delims=" %a IN ('dir "." /b') do if NOT "src" == "%a" move "%a" src\ament_boost\
 
 build_script:
   - md build
@@ -47,7 +44,6 @@ build_script:
 after_build:
   - xcopy /e /c /i /y install ament_boost_x64_windows
   - 7z a -bso0 -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
-  - echo %APPVEYOR_BUILD_FOLDER%
 
 artifacts:
   - path: build/ament_boost_x64_windows.zip
