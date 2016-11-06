@@ -51,13 +51,10 @@ artifacts:
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
-  description: 'ament_boost'
   provider: GitHub
   auth_token:
     secure: aUDHgyx/y2Z+bVu0zVHJq8T9fQVCulPJ4N23BSUjhaMpRCqwrE6P0ACBN/l0+jCP
-  artifact: ament_boost_x64_windows.zip
-  draft: false
-  prerelease: false
+  artifact: build/ament_boost_x64_windows.zip
   force_update: true
   on:
     branch: master
