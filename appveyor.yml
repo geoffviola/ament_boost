@@ -24,13 +24,10 @@ install:
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
-  # - ps: $local_setup_bat_content = Get-Content C:\dev\ros2\local_setup.bat -Raw
-  # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe", "python"
-  # - ps: $local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\local_setup.bat
   - ps: |
       gci -r -path "C:\dev\ros2" -include "*.bat","*.py" |
       foreach-object { $a = $_.fullname; ( get-content $a ) |
-      foreach-object { $_ -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe","C:\\Python35-x64\\python.exe" }  |
+      foreach-object { $_ -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe","C:\\python" }  |
       set-content $a }
   - call C:\dev\ros2\setup.bat
 
@@ -40,17 +37,13 @@ before_build:
   - for /f "delims=" %%a IN ('dir "." /b') do if NOT "src" == "%%a" move "%%a" src\ament_boost\
 
 build_script:
-  - ament build || type "C:\dev\ros2\local_setup.bat"
-  - type "C:\dev\ros2\local_setup.bat"
-  # - md build
-  # - cd build
-  # - cmake ../src/ament_boost -G"%GENERATOR%" -DCMAKE_INSTALL_PREFIX=install
-  # - cmake --build . --config %CONFIG%
-  # - msbuild INSTALL.vcxproj
+  - ament build
 
 after_build:
   - xcopy /e /c /i /y install ament_boost_x64_windows
   - 7z a -bso0 -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
+
+test: off
 
 artifacts:
   - path: build/ament_boost_x64_windows.zip

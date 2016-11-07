@@ -6,40 +6,45 @@ find_package(ament_cmake REQUIRED)
 find_package(Subversion REQUIRED)
 
 add_custom_target(svn_boost ALL
-    "${Subversion_SVN_EXECUTABLE}" 
-    checkout http://svn.boost.org/svn/boost/trunk/ 
-    "${CMAKE_BINARY_DIR}/src/boost"
-    -q)
+  "${Subversion_SVN_EXECUTABLE}"
+  checkout http://svn.boost.org/svn/boost/trunk/
+  "${CMAKE_BINARY_DIR}/src/boost"
+  -q)
 
 add_custom_target(bootstrap_boost ALL
-    DEPENDS "${CMAKE_BINARY_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}")
+  DEPENDS "${CMAKE_BINARY_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}")
 add_dependencies(bootstrap_boost svn_boost)
-if (WIN32)
+if(WIN32)
   set(SHELL_SUFFIX ".bat")
-else ()
+else()
   set(SHELL_SUFFIX ".sh")
-endif ()
+endif()
 add_custom_command(
-    OUTPUT "${CMAKE_BINARY_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}"
-    COMMAND "${CMAKE_BINARY_DIR}/src/boost/bootstrap${SHELL_SUFFIX}"
-    COMMENT "boost bootstrap"
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/src/boost")
+  OUTPUT "${CMAKE_BINARY_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}"
+  COMMAND "${CMAKE_BINARY_DIR}/src/boost/bootstrap${SHELL_SUFFIX}"
+  COMMENT "boost bootstrap"
+  WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/src/boost")
 
 add_custom_target(build_boost ALL
-    "${CMAKE_BINARY_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}"
-      address-model=64 headers
-    DEPENDS bootstrap_boost
-    COMMENT "building boost"
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/src/boost")
+  "${CMAKE_BINARY_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}"
+    address-model=64 headers
+  DEPENDS bootstrap_boost
+  COMMENT "building boost"
+  WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/src/boost")
 add_custom_target(copy_boost_includes ALL
-    "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_BINARY_DIR}/src/boost/boost"
-        "${CMAKE_BINARY_DIR}/b2/include/boost"
-    DEPENDS build_boost
-    COMMENT "copy boost includes")
+  "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_BINARY_DIR}/src/boost/boost"
+    "${CMAKE_BINARY_DIR}/b2/include/boost"
+  DEPENDS build_boost
+  COMMENT "copy boost includes")
 
 install(
-    DIRECTORY "${CMAKE_BINARY_DIR}/b2/include/"
-    DESTINATION include
-    MESSAGE_NEVER)
+  DIRECTORY "${CMAKE_BINARY_DIR}/b2/include/"
+  DESTINATION include
+  MESSAGE_NEVER)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 ament_package()
