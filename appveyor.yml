@@ -27,11 +27,11 @@ install:
   # - ps: $local_setup_bat_content = Get-Content C:\dev\ros2\local_setup.bat -Raw
   # - ps: $local_setup_bat_content = $local_setup_bat_content -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe", "python"
   # - ps: $local_setup_bat_content | Out-File -Encoding DEFAULT -FilePath C:\dev\ros2\local_setup.bat
-  - ps: >-
-    gci -r -include "*.bat","*.py" |
-    foreach-object { $a = $_.fullname; ( get-content $a ) |
-    foreach-object { $_ -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe","C:\\Python35-x64\\python.exe" }  |
-    set-content $a }
+  - ps: |
+      gci -r -include "*.bat","*.py" |
+      foreach-object { $a = $_.fullname; ( get-content $a ) |
+      foreach-object { $_ -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe","C:\\Python35-x64\\python.exe" }  |
+      set-content $a }
   - call C:\dev\ros2\setup.bat
 
 before_build:
