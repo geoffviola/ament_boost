@@ -27,7 +27,7 @@ install:
   - ps: |
       gci -r -path "C:\dev\ros2" -include "*.bat","*.py" |
       foreach-object { $a = $_.fullname; ( get-content $a ) |
-      foreach-object { $_ -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe","python" }  |
+      foreach-object { $_ -replace "C:\\ProgramData\\chocolatey\\lib\\python3\\tools\\python.exe","python.exe" }  |
       set-content $a }
   - call C:\dev\ros2\setup.bat
 
