@@ -46,7 +46,7 @@ after_build:
 test: off
 
 artifacts:
-  - path: build/ament_boost_x64_windows.zip
+  - path: ament_boost_x64_windows.zip
     name: ament_boost_x64_windows
 
 deploy:
@@ -54,7 +54,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: aUDHgyx/y2Z+bVu0zVHJq8T9fQVCulPJ4N23BSUjhaMpRCqwrE6P0ACBN/l0+jCP
-  artifact: build/ament_boost_x64_windows.zip
+  artifact: ament_boost_x64_windows.zip
   force_update: true
   on:
     branch: master
