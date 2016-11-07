@@ -35,7 +35,8 @@ before_build:
   - for /f "delims=" %%a IN ('dir "." /b') do if NOT "src" == "%%a" move "%%a" src\ament_boost\
 
 build_script:
-  - ament build
+  - ament build || type "C:\dev\ros2\local_setup.bat"
+  - type "C:\dev\ros2\local_setup.bat"
   # - md build
   # - cd build
   # - cmake ../src/ament_boost -G"%GENERATOR%" -DCMAKE_INSTALL_PREFIX=install
