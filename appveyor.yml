@@ -43,7 +43,7 @@ after_build:
   - xcopy /e /c /i /y install ament_boost_x64_windows
   - 7z a -bso0 -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
 
-test: off
+test: ament test
 
 artifacts:
   - path: ament_boost_x64_windows.zip
