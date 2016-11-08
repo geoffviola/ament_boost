@@ -40,21 +40,21 @@ build_script:
   - ament build
 
 after_build:
-  - xcopy /e /c /i /y install ament_boost_x64_windows
-  - 7z a -bso0 -tzip ament_boost_x64_windows.zip ament_boost_x64_windows
+  - xcopy /e /c /i /y install ament_boost_windows
+  - 7z a -bso0 -tzip ament_boost_windows.zip ament_boost_windows
 
 test: ament test
 
 artifacts:
-  - path: ament_boost_x64_windows.zip
-    name: ament_boost_x64_windows
+  - path: ament_boost_windows.zip
+    name: ament_boost_windows
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
   provider: GitHub
   auth_token:
     secure: aUDHgyx/y2Z+bVu0zVHJq8T9fQVCulPJ4N23BSUjhaMpRCqwrE6P0ACBN/l0+jCP
-  artifact: ament_boost_x64_windows.zip
+  artifact: ament_boost_windows.zip
   force_update: true
   on:
     branch: master
