@@ -6,7 +6,7 @@ os:
 script:
 - docker run -it osrf/ros2 /bin/bash -c "cd;mkdir -p temp_ws/src;cd temp_ws/src;apt-get
   update;apt-get install -y software-properties-common;add-apt-repository -y ppa:git-core/ppa;apt-get
-  update;apt-get install -y git subversion;git clone https://github.com/geoffviola/ament_boost;cd
+  update;apt-get install -y git;git clone https://github.com/geoffviola/ament_boost;cd
   ..;ament build;ament test;cp -r install ament_boost_ubuntu;tar -cjSf ament_boost_ubuntu.tar.bz2 ament_boost_ubuntu"
 - docker cp $(docker ps -l -q):root/temp_ws/ament_boost_ubuntu.tar.bz2 .
 before_deploy: git fetch --tags

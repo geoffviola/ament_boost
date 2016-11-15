@@ -32,9 +32,10 @@ install:
   - call C:\dev\ros2\setup.bat
 
 before_build:
-  - md src
-  - md src\ament_boost
-  - for /f "delims=" %%a IN ('dir "." /b') do if NOT "src" == "%%a" move "%%a" src\ament_boost\
+  - md temp
+  - md temp\ament_boost
+  - for /f "delims=" %%a IN ('dir "." /b /a') do if NOT "temp" == "%%a" (attrib -h "%%a" && move "%%a" temp\ament_boost\)
+  - ren temp src
 
 build_script:
   - ament build
