@@ -32,7 +32,7 @@ add_custom_command(
 add_custom_target(build_boost ALL
   "${CMAKE_SOURCE_DIR}/src/boost/b2${CMAKE_EXECUTABLE_SUFFIX}"
     address-model=64 variant=debug,release link=shared
-    runtime-link=static headers filesystem
+    runtime-link=shared headers filesystem
   DEPENDS bootstrap_boost
   COMMENT "building boost"
   WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/src/boost")
